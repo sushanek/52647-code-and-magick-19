@@ -6,10 +6,10 @@ var WIN_X = 100;
 var WIN_Y = 10;
 var WIN_COLOR = '#fff';
 var MY_LABEL = 'Вы';
-var MY_COLOR = 'rgb(255, 0, 0)';
+var MY_COLOR = 'rgba(255, 0, 0, 1)';
 var TEXT_GAP = 20;
 var SHADOW_GAP = 10;
-var SHADOW_COLOR = 'rgba(0, 0, 0, 0.3)';
+var SHADOW_COLOR = 'rgba(0, 0, 0, 0.7)';
 var BAR_X = 130;
 var BAR_Y = 250;
 var BAR_WIDTH = 40;
@@ -30,14 +30,14 @@ var renderWin = function (ctx, x, y, width, height, color, shadowColor, gap) {
   ctx.shadowColor = 'transparent';
 };
 
-var getBestTime = function (times) {
-  var bestTime = times[0];
+var getMaxTime = function (times) {
+  var maxTime = times[0];
   for (var i = 1; i < times.length; i++) {
-    if (times[i] > bestTime) {
-      bestTime = times[i];
+    if (times[i] > maxTime) {
+      maxTime = times[i];
     }
   }
-  return bestTime;
+  return maxTime;
 };
 
 var renderBar = function (ctx, color, x, y, width, height, player, time) {
@@ -56,7 +56,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', WIN_X + TEXT_GAP, WIN_Y + 30);
   ctx.font = FONT_REGULAR;
   ctx.fillText('Список результатов:', WIN_X + TEXT_GAP, WIN_Y + 50);
-  var barDiv = Math.floor(getBestTime(times) / BAR_HEIGHT);
+  var barDiv = Math.floor(getMaxTime(times) / BAR_HEIGHT);
 
   for (var i = 0; i < names.length; i++) {
     var time = Math.floor(times[i]);
@@ -64,8 +64,8 @@ window.renderStatistics = function (ctx, names, times) {
     var name = names[i];
     var axisX = BAR_X + BAR_GAP * i;
     var axisY = BAR_Y - barSize;
-    var rndBlue = 'hsla(200, 80%, ' + Math.floor((Math.random() * 100)) + '%)';
-    var color = (name !== MY_LABEL) ? rndBlue : MY_COLOR;
+    var randomeBlue = 'hsla(200, 80%, ' + Math.floor((Math.random() * 100)) + '%)';
+    var color = (name !== MY_LABEL) ? randomeBlue : MY_COLOR;
     renderBar(ctx, color, axisX, axisY, BAR_WIDTH, barSize, name, time);
   }
 };
