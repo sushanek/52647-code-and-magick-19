@@ -4,11 +4,11 @@
   var setup = document.querySelector('.setup');
   var setupOpenControl = document.querySelector('.setup-open');
   var setupCloseControl = setup.querySelector('.setup-close');
-  var ECS_KEY = 27;
+  var ESC_KEY = 27;
   var ENTER_KEY = 13;
 
   var onPopupEscPress = function (evt) {
-    if (evt.keyCode === ECS_KEY) {
+    if ((evt.keyCode === ESC_KEY) && (evt.target.tagName !== 'INPUT')) {
       closePopup();
     }
   };
@@ -20,7 +20,6 @@
     setup.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
   };
-
   setupOpenControl.addEventListener('click', openPopup);
   setupCloseControl.addEventListener('click', closePopup);
 
