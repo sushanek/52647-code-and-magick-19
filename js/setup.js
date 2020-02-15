@@ -5,13 +5,41 @@ var showSetupWindow = function () {
   var SECOND_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
   var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
   var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+  var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
   var WIZARDS_SUM = 4;
-  var userDialog = document.querySelector('.setup');
+  var setupPlayer = document.querySelector('.setup-player');
 
-  userDialog.classList.remove('hidden');
+  // Задает цвет фаербола
+  (function () {
+    var setupFireballWrap = setupPlayer.querySelector('.setup-fireball-wrap');
+    setupFireballWrap.addEventListener('click', function () {
+      var fireballColor = FIREBALL_COLORS[Math.floor(Math.random() * FIREBALL_COLORS.length)];
+      setupFireballWrap.style.background = fireballColor;
+      setupFireballWrap.querySelector('input').value = fireballColor;
+    });
+  })();
+
+  // Задает цвет глаз
+  (function () {
+    var setupWizardEyes = setupPlayer.querySelector('.wizard-eyes');
+    setupWizardEyes.addEventListener('click', function () {
+      var eyesColor = EYES_COLORS[Math.floor(Math.random() * EYES_COLORS.length)];
+      setupWizardEyes.style.fill = eyesColor;
+      setupPlayer.querySelector('input[name = "eyes-color"]').value = eyesColor;
+    });
+  })();
+
+  // Задает цвет мантии
+  (function () {
+    var setupWizardСoat = setupPlayer.querySelector('.wizard-coat');
+    setupWizardСoat.addEventListener('click', function () {
+      var coatColor = COAT_COLORS[Math.floor(Math.random() * COAT_COLORS.length)];
+      setupWizardСoat.style.fill = coatColor;
+      setupPlayer.querySelector('input[name = "coat-color"]').value = coatColor;
+    });
+  })();
 
   var similarListElement = document.querySelector('.setup-similar-list');
-
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
       .content
       .querySelector('.setup-similar-item');
@@ -53,7 +81,7 @@ var showSetupWindow = function () {
   };
 
   similarListElement.appendChild(createFragment(createWizardsArray(WIZARDS_SUM)));
-  userDialog.querySelector('.setup-similar').classList.remove('hidden');
+  document.querySelector('.setup-similar').classList.remove('hidden');
 };
 
 showSetupWindow();
