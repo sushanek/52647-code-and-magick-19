@@ -4,13 +4,13 @@
   var ESC_KEY = 27;
   var ENTER_KEY = 13;
   window.util = {
-    isEscEvent: function (evt, action) {
+    pressEscEvent: function (evt, action) {
       if (evt.keyCode === ESC_KEY) {
         action();
       }
     },
 
-    isEnterEvent: function (evt, action) {
+    pressEnterEvent: function (evt, action) {
       if (evt.keyCode === ENTER_KEY) {
         action();
       }
@@ -21,7 +21,7 @@
       return array[index];
     },
 
-    colorize: function (element, colors, input) {
+    chooseColor: function (element, colors, input) {
       element.addEventListener('click', function () {
         var color = window.util.shake(colors);
         if (element.tagName.toLowerCase() === 'div') {

@@ -8,7 +8,7 @@
   // Функция вызывает закрытия окна если на поле ввода нет фокуса
   var onPopupEscPress = function (evt) {
     if (evt.target.tagName !== 'INPUT') {
-      window.util.isEscEvent(evt, closePopup);
+      window.util.pressEscEvent(evt, closePopup);
     }
   };
 
@@ -27,10 +27,10 @@
   setupCloseControl.addEventListener('click', closePopup);
 
   setupOpenControl.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, openPopup);
+    window.util.pressEnterEvent(evt, openPopup);
   });
 
   setupCloseControl.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, closePopup);
+    window.util.pressEnterEvent(evt, closePopup);
   });
 })();
