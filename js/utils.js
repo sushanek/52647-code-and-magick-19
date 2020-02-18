@@ -3,7 +3,7 @@
 (function () {
   var ESC_KEY = 27;
   var ENTER_KEY = 13;
-  window.util = {
+  window.utils = {
     pressEscEvent: function (evt, action) {
       if (evt.keyCode === ESC_KEY) {
         action();
@@ -23,7 +23,7 @@
 
     chooseColor: function (element, colors, input) {
       element.addEventListener('click', function () {
-        var color = window.util.shake(colors);
+        var color = window.utils.shake(colors);
         if (element.tagName.toLowerCase() === 'div') {
           element.style.backgroundColor = color;
         } else {

@@ -4,11 +4,12 @@
   var setup = document.querySelector('.setup');
   var setupOpenControl = document.querySelector('.setup-open');
   var setupCloseControl = setup.querySelector('.setup-close');
+  var setupForm = setup.querySelector('.setup-wizard-form');
 
   // Функция вызывает закрытия окна если на поле ввода нет фокуса
   var onPopupEscPress = function (evt) {
     if (evt.target.tagName !== 'INPUT') {
-      window.util.pressEscEvent(evt, closePopup);
+      window.utils.pressEscEvent(evt, closePopup);
     }
   };
 
@@ -27,10 +28,18 @@
   setupCloseControl.addEventListener('click', closePopup);
 
   setupOpenControl.addEventListener('keydown', function (evt) {
-    window.util.pressEnterEvent(evt, openPopup);
+    window.utils.pressEnterEvent(evt, openPopup);
   });
 
   setupCloseControl.addEventListener('keydown', function (evt) {
-    window.util.pressEnterEvent(evt, closePopup);
+    window.utils.pressEnterEvent(evt, closePopup);
+  });
+
+  // Отправляет данные на сервер и закрывает окно настроек
+  setupForm.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(setupForm), function () {
+      closePopup();
+    });
+    evt.preventDefault();
   });
 })();
