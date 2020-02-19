@@ -31,6 +31,18 @@
         }
         input.value = color;
       });
+    },
+
+    errorHandler: function (errorMessage) {
+      var node = document.createElement('div');
+      node.className = 'error';
+      node.textContent = errorMessage;
+      document.body.insertAdjacentElement('afterbegin', node);
+
+      // Закрытие ошибки по клику
+      document.querySelector('.error').addEventListener('click', function (evt) {
+        evt.target.remove();
+      });
     }
   };
 

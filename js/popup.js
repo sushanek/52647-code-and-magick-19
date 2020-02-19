@@ -35,11 +35,13 @@
     window.utils.pressEnterEvent(evt, closePopup);
   });
 
+  var loadHandler = function () {
+    closePopup();
+  };
+
   // Отправляет данные на сервер и закрывает окно настроек
   setupForm.addEventListener('submit', function (evt) {
-    window.backend.save(new FormData(setupForm), function () {
-      closePopup();
-    });
+    window.backend.save(new FormData(setupForm), loadHandler, window.utils.errorHandler);
     evt.preventDefault();
   });
 })();

@@ -17,17 +17,18 @@
     return wizardElement;
   };
 
-  // Создаем массив магов добытых с сервера
-  window.backend.load(function (wizards) {
-    // Создание фрагмента верстки для вставки
+  // При успешной загрузке создаем фрагмент верстки для вставки
+  var loadHandler = function (wizards) {
     var fragment = document.createDocumentFragment();
     for (var i = 0; i < WIZARDS_SUM; i++) {
       fragment.appendChild(renderWizard(shake(wizards))); // В последствии заменим выбор случайного волшебника на похожего
     }
-
     // Вставляем магов
     similarListElement.appendChild(fragment);
     document.querySelector('.setup-similar').classList.remove('hidden');
-  });
+  };
+
+  // Загружаем данные с сервера
+  window.backend.load(loadHandler, window.utils.errorHandler);
 
 })();
