@@ -41,7 +41,7 @@
 
   // Отправляет данные на сервер и закрывает окно настроек
   setupForm.addEventListener('submit', function (evt) {
-    window.backend.save(new FormData(setupForm), loadHandler, window.utils.errorHandler);
+    window.backend.load('POST', loadHandler, window.utils.errorHandler, new FormData(setupForm));
     evt.preventDefault();
   });
 })();

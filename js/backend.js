@@ -2,18 +2,23 @@
 (function () {
   window.backend = {};
 
-  window.backend.load = function (onLoad, onError) {
-    var URL = 'https://js.dump.academy/code-and-magick/data1';
-    var Code = {
-      OK: 200,
-      NOT_FOUND: 404,
-      SERVER_ERROR: 500
-    };
+  var Code = {
+    OK: 200,
+    MULTIPLE_CHOICE: 300,
+    NOT_FOUND: 404,
+    SERVER_ERROR: 500
+  };
+
+  var URL = {
+    GET: 'https://js.dump.academy/code-and-magick/data',
+    POST: 'https://js.dump.academy/code-and-magick'
+  };
+
+  window.backend.load = function (method, onLoad, onError, data) {
 
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
-
-    xhr.open('GET', URL);
+    xhr.open(method, URL[method]);
 
     xhr.addEventListener('load', function () {
       switch (xhr.status) {
@@ -29,24 +34,6 @@
         default:
           onError('Неизвестная ошибка');
       }
-    });
-
-    xhr.send();
-  };
-
-  window.backend.save = function (data, onLoad, onError) {
-    var URL = 'https://js.dump.academy/code-and-magick';
-    var xhr = new XMLHttpRequest();
-    xhr.responceType = 'json';
-
-    xhr.open('POST', URL);
-
-    xhr.addEventListener('load', function () {
-      onLoad(xhr.response);
-    });
-
-    xhr.addEventListener('error', function () {
-      onError('Произошла ошибка соединения');
     });
 
     xhr.send(data);

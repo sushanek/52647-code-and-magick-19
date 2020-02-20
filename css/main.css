@@ -1031,12 +1031,14 @@ input[type=radio]:checked + .review-mark-label
   text-align: center;
   font-weight: bold;
   color: red;
-  border-radius: 6px;
+
+  border: 1px solid black;
 
   padding: 16px;
   margin: 16px;
 
   box-shadow: 8px 8px 0 0 rgba(0, 0, 0, 0.7);
   cursor: pointer;
+  user-select: none;
 
 }

@@ -29,6 +29,6 @@
   };
 
   // Загружаем данные с сервера
-  window.backend.load(loadHandler, window.utils.errorHandler);
+  window.backend.load('GET', loadHandler, window.utils.errorHandler);
 
 })();
